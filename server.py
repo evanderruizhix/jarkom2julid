@@ -6,7 +6,9 @@ messages = queue.Queue()
 clients = []
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server.bind(("localhost", 9999))
+hostname = socket.gethostname()
+sIPaddress = socket.gethostbyname(hostname)
+server.bind((sIPaddress, 9999))
 
 def receive():
     while True:
@@ -27,6 +29,7 @@ def broadcast():
                 try:
                     if message.decode().startswith("SIGNUP_TAG:"):
                         name = message.decode()[message.decode().index(":")+1:]
+                        print(f"{name} joined!")
                         server.sendto(f"{name} joined!".encode(), client)
                     else:
                         server.sendto(message, client)
