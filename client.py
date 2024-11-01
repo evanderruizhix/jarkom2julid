@@ -10,7 +10,7 @@ if __name__ == "__main__":
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #Implementasi UDP
 
 IPaddress = input("Masukkan IP Address: ")
-while (IPaddress != "25.9.85.244"): # Pengecekan IP Address
+while (IPaddress != var.IPAddress): # Pengecekan IP Address
     print("IP Address yang dimasukkan tidak sesuai!")
     IPaddress = input("Masukkan IP Address: ")
 

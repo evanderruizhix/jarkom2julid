@@ -49,7 +49,7 @@ class ChatroomApp:
             return
 
         # Jika IP dan portnum valid
-        if self.IPaddress and self.portnum:
+        if self.IPaddress == var.IPAddress:
             self.ip_port_popup.destroy()
             self.create_password_popup()
         else:

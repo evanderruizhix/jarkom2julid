@@ -1,5 +1,6 @@
 import csv
 password = "koplak"
+IPAddress = "25.9.131.70"
 
 # Fungsi untuk membaca username dalam username.csv
 def read_usernames(file_name):
