@@ -1,30 +1,47 @@
 import csv
-ipp = "10.10.11.49"
 password = "koplak"
-username = ["Fav"]
 
-# Function to read existing usernames from a CSV file
+# Fungsi untuk membaca username dalam username.csv
 def read_usernames(file_name):
     usernames = []
     try:
         with open(file_name, mode='r', newline='') as file:
             reader = csv.reader(file)
-            usernames = [row[0] for row in reader]  # Assuming usernames are in the first column
+            usernames = [row[0] for row in reader]
     except FileNotFoundError:
-        # If the file doesn't exist, we just return an empty list
-        print(f"{file_name} not found, starting with an empty list.")
+        # Jika file belum tersedia, akan membuat csv baru
+        print(f"{file_name} tidak ditemukan, membuat file baru...")
     return usernames
 
-# Function to write new username to the CSV file
+# Fungsi untuk menuliskan username ke username.csv
 def write_username(file_name, new_username):
     with open(file_name, mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([new_username])  # Writing the new username to the file
+        writer.writerow([new_username])  
 
+# Fungsi untuk menghapus username yang akan digunakan saat client keluar dari chatroom
 def delete_username(file_name, username):
     usernames = read_usernames(file_name)
-    usernames = [user for user in usernames if user != username]  # Exclude the username
+    usernames = [user for user in usernames if user != username]  
     with open(file_name, mode='w', newline='') as file:
         writer = csv.writer(file)
         for user in usernames:
             writer.writerow([user]) 
+
+# Fungsi untuk menyimpan pesan ke dalam messages.csv, yang akan digunakan pada implementasi restore history chatroom
+def save_message(file_name, username, message):
+    with open(file_name, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([username, message])
+
+# Fungsi untuk membaca pesan dalam messages.csv
+def read_messages(file_name):
+    messages = []
+    try:
+        with open(file_name, mode='r', newline='') as file:
+            reader = csv.reader(file)
+            messages = [row for row in reader]
+    except FileNotFoundError:
+        # Jika belum ada file messages.csv, akan membuat file csv baru
+        print(f"{file_name} tidak ditemukan, membuat file baru...")
+    return messages 
