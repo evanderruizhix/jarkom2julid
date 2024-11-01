@@ -159,23 +159,6 @@ class ChatroomApp:
                 self.chat_display.insert(tk.END, decoded_message + "\n")
                 self.chat_display.config(state=tk.DISABLED)
                 
-                # # Check for join and leave messages and display them
-                # if "berhasil memasuki chatroom!" in decoded_message:
-                #     # Highlight join message
-                #     self.chat_display.config(state=tk.NORMAL)
-                #     self.chat_display.insert(tk.END, f"{decoded_message}\n")
-                #     self.chat_display.config(state=tk.DISABLED)
-                # elif "telah keluar dari chatroom" in decoded_message:
-                #     # Highlight leave message
-                #     self.chat_display.config(state=tk.NORMAL)
-                #     self.chat_display.insert(tk.END, f"{decoded_message}\n")
-                #     self.chat_display.config(state=tk.DISABLED)
-                # else:
-                #     # Display normal messages
-                #     self.chat_display.config(state=tk.NORMAL)
-                #     self.chat_display.insert(tk.END, decoded_message + "\n")
-                #     self.chat_display.config(state=tk.DISABLED)
-
                 self.chat_display.yview(tk.END)  # Scroll to the end of the chat
             except:
                 pass
